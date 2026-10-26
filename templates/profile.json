@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "profile_id": "local_user",
+  "revision": 1,
+  "sources": {"template": "初始空白模板；未知信息不推断为已掌握"},
+  "background": {"description": "尚未填写，请在首次使用前编辑此文件。"},
+  "knowledge_background": {"description": "未知"},
+  "learning_preferences": {"language": "中文", "approach": "先解释，再通过真实回答验证理解"},
+  "knowledge_mastery": []
+}

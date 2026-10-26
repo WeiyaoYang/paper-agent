@@ -1,0 +1,2 @@
+# Install from the project root. Dependencies are declared in pyproject.toml.
+-e .[models,desktop,docling]

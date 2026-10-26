@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "统一交互运行状态（不是新增业务信息类别）",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^chat_[0-9a-f]{32}$"
+    },
+    "paper_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phase": {
+      "enum": [
+        "planning",
+        "selecting",
+        "behavior",
+        "reviewing",
+        "decision",
+        "ended"
+      ]
+    },
+    "status": {
+      "enum": [
+        "active",
+        "waiting_plan",
+        "waiting_answer",
+        "waiting_save",
+        "waiting_end",
+        "paused",
+        "blocked",
+        "completed",
+        "ended_early"
+      ]
+    },
+    "plan_id": {
+      "type": "string",
+      "pattern": "^planning_[0-9a-f]{32}$"
+    },
+    "model_calls": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "max_calls": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 200
+    },
+    "in_flight": {
+      "type": "boolean"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completed": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "parked_runs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^behavior_[0-9a-f]{32}$"
+      },
+      "uniqueItems": true
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phase": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "phase",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "active_run_id": {
+      "type": "string",
+      "pattern": "^behavior_[0-9a-f]{32}$"
+    },
+    "selected": {
+      "type": "object",
+      "properties": {
+        "behavior": {
+          "enum": [
+            "reading",
+            "discussion",
+            "qa",
+            "knowledge-recording",
+            "verification"
+          ]
+        },
+        "request": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "behavior",
+        "request",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "requested_behavior": {
+      "type": "object",
+      "properties": {
+        "behavior": {
+          "enum": [
+            "reading",
+            "discussion",
+            "qa",
+            "knowledge-recording",
+            "verification"
+          ]
+        },
+        "request": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "behavior",
+        "request",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "selection_pending": {
+      "type": "boolean"
+    },
+    "reply_pending": {
+      "type": "boolean"
+    },
+    "force_verification": {
+      "type": "boolean"
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "error": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "session_id",
+    "paper_id",
+    "goal",
+    "phase",
+    "status",
+    "plan_id",
+    "model_calls",
+    "max_calls",
+    "in_flight",
+    "events",
+    "completed",
+    "parked_runs",
+    "inputs"
+  ],
+  "additionalProperties": false
+}

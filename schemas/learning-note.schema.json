@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "学习笔记：规划部分",
+  "description": "学习笔记 planning 片段，已接入规划校验；result 另见 learning-result.schema.json。",
+  "type": "object",
+  "properties": {
+    "part": {
+      "const": "planning",
+      "description": "明确这是学习笔记的规划部分。"
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1,
+      "description": "保留用户本次学习目标；必要澄清和未确认假设以文字明确区分，不冒充用户要求。"
+    },
+    "materials": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "paper_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paper_content_id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "采用的论文内容版本编号，即现有 parse_run_id。"
+          }
+        },
+        "required": [
+          "paper_id",
+          "paper_content_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "plan": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Agent 按目标提出可调整的候选行动，不要求使用全部行为。",
+      "items": {
+        "type": "object",
+        "properties": {
+          "behavior": {
+            "enum": [
+              "reading",
+              "discussion",
+              "qa",
+              "knowledge-recording",
+              "verification",
+              "framework-change",
+              "profile-change"
+            ],
+            "description": "七种行为标识；verification 是正常完成前必经的理解验证，画像和框架更改禁用。"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "这一步准备做什么、怎样服务于目标；可以在文字中说明范围与调整条件。"
+          }
+        },
+        "required": [
+          "behavior",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "part",
+    "goal",
+    "materials",
+    "plan"
+  ],
+  "additionalProperties": false
+}

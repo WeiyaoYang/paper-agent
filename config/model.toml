@@ -1,0 +1,5 @@
+# Non-secret configuration. API key belongs in config/.env.local.
+model = "gpt-6.1-sol"
+reasoning_effort = "low"
+max_output_tokens = 1024
+timeout_seconds = 60

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "知识记录候选包（非正式记录）",
+  "type": "object",
+  "properties": {
+    "concepts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "classification": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "name",
+          "aliases",
+          "classification"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "note": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "paper_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "paper_content_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pdf_page": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "block_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "quote": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "paper_id",
+              "paper_content_id",
+              "pdf_page",
+              "block_id",
+              "quote"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "unresolved_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "sources",
+        "unresolved_questions"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "concepts",
+    "note"
+  ],
+  "additionalProperties": false
+}

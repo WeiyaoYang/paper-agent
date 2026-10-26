@@ -1,0 +1,17 @@
+__pycache__/
+*.egg-info/
+.venv/
+.runtime/
+.cache/
+tmp/
+.env
+.env.*
+!.env.example
+data/*
+!data/README.md
+dist/
+build/
+*.lnk
+# Personal illustrations remain local; public builds use default-agent.svg.
+assets/app-icon*
+assets/welcome-character*

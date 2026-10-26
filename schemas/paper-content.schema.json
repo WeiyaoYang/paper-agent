@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "论文内容（一个解析版本）",
+  "description": "论文内容版本结构，当前已用于解析保存校验；工具扩展字段保持开放。",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "paper_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pdf_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parse_run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paper_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pdf_page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string"
+          },
+          "warning": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "paper_id",
+          "pdf_page",
+          "text",
+          "warning"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pdf_page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string"
+          },
+          "bbox": {
+            "type": "object",
+            "properties": {
+              "l": {
+                "type": "number"
+              },
+              "t": {
+                "type": "number"
+              },
+              "r": {
+                "type": "number"
+              },
+              "b": {
+                "type": "number"
+              },
+              "coord_origin": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "l",
+              "t",
+              "r",
+              "b"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "pdf_page",
+          "type",
+          "text",
+          "bbox"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "parse": {
+      "type": "object",
+      "description": "解析器元信息、配置和工具产物引用；工具扩展字段暂不收紧。"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "pages_status": {
+      "enum": [
+        "current",
+        "historical_pages_not_retained_by_old_storage"
+      ]
+    }
+  },
+  "required": [
+    "paper_id",
+    "pdf_path",
+    "parse_run_id",
+    "pages",
+    "blocks",
+    "parse",
+    "limitations"
+  ],
+  "additionalProperties": false
+}

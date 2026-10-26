@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "论文（兼容当前文件存储）",
+  "description": "论文登记结构，当前已用于写入校验；兼容已有记录。",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pdf_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "unprocessed",
+        "processing",
+        "completed",
+        "partial",
+        "failed"
+      ]
+    },
+    "page_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "active_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "sha256",
+    "title",
+    "source",
+    "pdf_path",
+    "status",
+    "page_count",
+    "error",
+    "created_at",
+    "updated_at",
+    "revision",
+    "active_run_id"
+  ],
+  "additionalProperties": false
+}

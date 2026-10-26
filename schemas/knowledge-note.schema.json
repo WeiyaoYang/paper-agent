@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "knowledge-note v1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "paper_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "paper_content_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        },
+        "concept_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "author": {
+          "const": "agent"
+        },
+        "verification_status": {
+          "const": "unverified"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "paper_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "paper_content_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "pdf_page": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "block_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "quote": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "paper_id",
+              "paper_content_id",
+              "pdf_page",
+              "block_id",
+              "quote"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "unresolved_questions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "concept_ids",
+        "author",
+        "verification_status",
+        "sources",
+        "unresolved_questions"
+      ],
+      "additionalProperties": false
+    },
+    "plan_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "程序在关联本次学习规划时填写；兼容此前未关联的独立记录。"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "run_id",
+    "paper_id",
+    "paper_content_id",
+    "created_at",
+    "content"
+  ],
+  "additionalProperties": false
+}

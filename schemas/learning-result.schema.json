@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "学习笔记：本轮结果部分",
+  "type": "object",
+  "properties": {
+    "part": {
+      "const": "result"
+    },
+    "plan_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal_achieved": {
+      "type": "boolean"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "question_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "verification_record_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "changes": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "object_type": {
+            "enum": [
+              "paper",
+              "paper_content",
+              "reading_record",
+              "qa_record",
+              "discussion_record",
+              "knowledge_note",
+              "knowledge_point"
+            ]
+          },
+          "object_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "enum": [
+              "used",
+              "created",
+              "modified"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "object_type",
+          "object_id",
+          "action",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "part",
+    "plan_id",
+    "goal_achieved",
+    "reason",
+    "question_ids",
+    "verification_record_id",
+    "changes"
+  ],
+  "additionalProperties": false
+}
