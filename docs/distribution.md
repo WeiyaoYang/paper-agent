@@ -16,10 +16,10 @@
 
 1. 执行 `scripts/release.ps1`，取得 dist 内的新源码目录和 source.zip。
 2. 检查导出内容，确定仓库名称和许可证；目前不自动选定许可证。
-3. 在干净源码目录初始化 Git 并推送目标仓库。不要把 dist 放入自身仓库，也不要把外层个人 tools 工作区作为公开根目录。
+3. 仓库根目录是 paper-agent 项目本身；首次提交只加入经过审查的源码和模板。不要把 dist 放入 Git，也不要把外层个人 tools 工作区作为公开根目录。导出目录适合作为独立分发副本。
 4. 后续更新应继续同步允许公开的源码，不同步作者数据。已有 Git 历史若曾提交密钥，单加 gitignore 无法抹除历史，需要另外处理。
 
-本轮只整理本机源码及发布包，不创建 GitHub 仓库、不推送、不更改作者现有配置和学习数据。当前项目尚未初始化 Git，因此没有本项目 Git 历史可检查。
+源码仓库：[WeiyaoYang/paper-agent](https://github.com/WeiyaoYang/paper-agent)。便携包通过 [GitHub Releases](https://github.com/WeiyaoYang/paper-agent/releases) 分发，不作为大二进制文件提交到 Git。公开 Release 只上传通用素材版本和校验文件，私人配图版本留在本机。作者现有配置和学习数据不进入仓库。
 
 ## 验证边界
 
